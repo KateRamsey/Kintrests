@@ -1,3 +1,9 @@
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Kintrests.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace Kintrests.Migrations
 {
     using System;
@@ -14,18 +20,28 @@ namespace Kintrests.Migrations
 
         protected override void Seed(Kintrests.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var userStore = new UserStore<KintrestUser>(context);
+            var userManager = new UserManager<KintrestUser>(userStore);
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var kate = new KintrestUser()
+            {
+                Email = "kateramsey@live.com",
+                Handle = "kateramsey",
+                UserName = "kateramsey@live.com"
+            };
+            userManager.Create(kate, "MyP@ssw0rd!");
+
+            var bruce = new KintrestUser()
+            {
+                Email = "wills_martin@yahoo.com",
+                Handle = "brucewills",
+                UserName = "wills_martin@yahoo.com"
+            };
+            userManager.Create(bruce, "KateIsAwes0m3!");
+
+            var seedUsers = new List<KintrestUser> {kate, bruce};
+
+            context.Users.AddOrUpdate(u=> new {u.UserName}, seedUsers.ToArray());
         }
     }
 }
