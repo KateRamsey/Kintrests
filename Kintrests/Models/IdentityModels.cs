@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Kintrests.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class KintrestUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<KintrestUser> manager)
@@ -19,6 +18,7 @@ namespace Kintrests.Models
         }
 
         public virtual List<Kin> Kins { get; set; }
+        public string Handle { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<KintrestUser>
@@ -31,6 +31,18 @@ namespace Kintrests.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<KintrestUser>().ToTable("Users");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityRole>().ToTable("Role");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
+
+
         }
 
         public DbSet<Kin> Kins { get; set; }
