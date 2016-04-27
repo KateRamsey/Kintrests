@@ -18,4 +18,14 @@ namespace Kintrests.Models
         [Required]
         public virtual KintrestUser Owner { get; set; }
     }
+
+
+    public class KinVM
+    {
+        public int Id { get; set; }
+        public string Body { get; set; }
+        public string ImgURL { get; set; }
+        public string LinkURL { get; set; }
+        public string OwnerHandle { get; set; }
+    }
 }
