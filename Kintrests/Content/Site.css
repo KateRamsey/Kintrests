@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.kin {
+    background-color: lightgrey;
+    padding: 4px;
+}
+
+a > img {
+    width: 100%;
+}
