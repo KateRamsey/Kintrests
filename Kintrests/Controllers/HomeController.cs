@@ -11,7 +11,14 @@ namespace Kintrests.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetAllKins()
         {
             var userId = User.Identity.GetUserId();
             if (userId == null)
@@ -27,6 +34,32 @@ namespace Kintrests.Controllers
                 LinkURL = n.LinkURL
             }).ToList();
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult NewKin(NewKinVM k)
+        {
+            if (!ModelState.IsValid)
+            {
+                return null;
+            }
+            var userId = User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var newKin = new Kin
+            {
+                Body = k.Body,
+                ImgURL = k.ImgURL,
+                LinkURL = k.LinkURL,
+                Owner = db.Users.Find(userId)
+            };
+
+            db.Kins.Add(newKin);
+
+            return Json(newKin, JsonRequestBehavior.AllowGet);
         }
 
     }

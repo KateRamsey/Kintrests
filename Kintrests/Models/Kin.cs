@@ -27,4 +27,14 @@ namespace Kintrests.Models
         public string LinkURL { get; set; }
         public string OwnerHandle { get; set; }
     }
+
+    public class NewKinVM
+    {
+        public string Body { get; set; }
+        [Required]
+        public string ImgURL { get; set; }
+        [Required]
+        public string LinkURL { get; set; }
+    }
+
 }
