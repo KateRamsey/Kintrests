@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201604261910467_changeTableNames.Designer.cs">
       <DependentUpon>201604261910467_changeTableNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604271915533_takeRequirementOff.cs" />
+    <Compile Include="Migrations\201604271915533_takeRequirementOff.Designer.cs">
+      <DependentUpon>201604271915533_takeRequirementOff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -262,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604261910467_changeTableNames.resx">
       <DependentUpon>201604261910467_changeTableNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271915533_takeRequirementOff.resx">
+      <DependentUpon>201604271915533_takeRequirementOff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

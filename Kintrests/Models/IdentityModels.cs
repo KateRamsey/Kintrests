@@ -17,7 +17,7 @@ namespace Kintrests.Models
             return userIdentity;
         }
 
-        public virtual List<Kin> Kins { get; set; }
+        public virtual List<Kin> Kins { get; set; } = new List<Kin>();
         public string Handle { get; set; }
     }
 

@@ -15,7 +15,6 @@ namespace Kintrests.Models
         [Required]
         public string LinkURL { get; set; }
 
-        [Required]
         public virtual KintrestUser Owner { get; set; }
     }
 
