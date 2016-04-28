@@ -2,23 +2,26 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('Kintrestapp')
         .factory('factory', factory);
 
     factory.$inject = ['$http'];
 
     function factory($http) {
         var service = {
-            getData: getData
+            getData: getData,
+            saveNewKin: saveNewKin
         };
 
         return service;
 
+        function saveNewKin(newKin) {
+            return $http.post('/home/NewKin', newKin);
+        }
+
+
         function getData() {
-            $http({
-                method: 'GET',
-                url: '/GetAllKins'
-            }).then(function successCallback(response) {return response});
+           return $http.get('/home/GetAllKins');
         }
     }
 })();
