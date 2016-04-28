@@ -36,6 +36,12 @@ namespace Kintrests.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult NewKin()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult NewKin(NewKinVM k)
         {
@@ -56,6 +62,11 @@ namespace Kintrests.Controllers
                 LinkURL = k.LinkURL,
                 Owner = db.Users.Find(userId)
             };
+
+            if (newKin.LinkURL == null)
+            {
+                newKin.LinkURL = newKin.ImgURL;
+            }
 
             db.Kins.Add(newKin);
 
