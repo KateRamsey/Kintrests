@@ -54,6 +54,7 @@ namespace Kintrests.Controllers
             }
 
             db.Kins.Add(newKin);
+            db.SaveChanges();
 
             var kin = new KinVM(newKin);
 
