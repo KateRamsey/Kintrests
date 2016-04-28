@@ -21,6 +21,15 @@ namespace Kintrests.Models
 
     public class KinVM
     {
+        public KinVM(Kin k)
+        {
+            OwnerHandle = k.Owner.Handle;
+            Body = k.Body;
+            Id = k.Id;
+            ImgURL = k.ImgURL;
+            LinkURL = k.LinkURL;
+        }
+
         public int Id { get; set; }
         public string Body { get; set; }
         public string ImgURL { get; set; }

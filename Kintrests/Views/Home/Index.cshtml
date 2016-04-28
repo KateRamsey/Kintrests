@@ -4,6 +4,38 @@
 
 <div ng-controller="Kincontroller">
     <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Add a New Kin!
+        </button>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">New Kin</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input type="text" value="image URL" ng-model="newKin.ImgURL"/>
+                            <input type="text" value="link URL" ng-model="newKin.LinkURL"/>
+                            <input type="text" value="comment" ng-model="newKin.Body" />
+                            <input type="button" class="btn btn-primary" value="Save New Kin" ng-click="saveKin()"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <div ng-repeat="k in Kins track by $index" class="col-md-3 kin">
             {{k.OwnerHandle}}
