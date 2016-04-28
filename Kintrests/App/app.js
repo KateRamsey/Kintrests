@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('Kintrestapp', [
+    angular.module('Kintrestapp', [ 'ngRoute'
 
         
     ]);
