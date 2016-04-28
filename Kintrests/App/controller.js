@@ -12,6 +12,15 @@
 
         activate();
     
+        $scope.loadDetail = function(detailId) {
+            factory.getDetail(detailId).then(function (res) {
+                $scope.detailBody = res.data.Body;
+                $scope.detailLinkURL = res.data.LinkURL;
+                $scope.detailImgURL = res.data.ImgURL;
+                $scope.detailOwnerHandle = res.data.OwnerHandle;
+
+            });
+        }
 
         $scope.saveKin = function () {
             console.log('called controller saveKin()');

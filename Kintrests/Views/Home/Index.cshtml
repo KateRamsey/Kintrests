@@ -47,8 +47,7 @@
 
         <div class="row masonry">
             <div ng-repeat="k in Kins track by $index" class="col-md-3 kin">
-                <button type="button" class="btn" data-toggle="modal" data-target="#ViewDetailsModal" 
-                        data-KinBody="{{k.Body}}" data-KinImgURL="{{k.ImgURL}}" data-LinkURL="{{k.LinkURL}}">
+                <button type="button" class="btn" data-toggle="modal" data-target="#ViewDetailsModal" ng-click="loadDetail(k.Id)">
                         <img class="KinImg" ng-src="{{k.ImgURL}}" alt="{{k.Body}}" />
                         </button>
 
@@ -66,7 +65,9 @@
                     <h4 class="modal-title">Kin Details</h4>
                 </div>
                 <div class="modal-body">
-                    {{k.Body}}
+                    <img class="KinImg" ng-src="{{detailLinkURL}}" alt="{{detailBody}}"/>
+                    <a href="{{detailLinkURL}}">Click</a>
+                    <p>{{detailBody}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

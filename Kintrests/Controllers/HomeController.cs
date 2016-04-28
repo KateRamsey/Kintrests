@@ -29,6 +29,18 @@ namespace Kintrests.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult KinDetail(int kinId)
+        {
+            var k = db.Kins.Find(kinId);
+            if (k == null)
+            {
+                return Content("nope");
+            }
+
+            var model = new KinVM(k);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult NewKin(NewKinVM k)

@@ -10,7 +10,8 @@
     function factory($http) {
         var service = {
             getData: getData,
-            saveNewKin: saveNewKin
+            saveNewKin: saveNewKin,
+            getDetail: getDetail
         };
 
         return service;
@@ -19,6 +20,9 @@
             return $http.post('/home/NewKin', newKin);
         }
 
+        function getDetail(detailId) {
+            return $http.get('/home/KinDetail', detailId);
+        }
 
         function getData() {
            return $http.get('/home/GetAllKins');
