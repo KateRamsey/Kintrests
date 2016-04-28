@@ -2,10 +2,10 @@
     ViewBag.Title = "Kintrest";
 }
 
-<div ng-controller="Kincontroller">
+<div ng-controller="Kincontroller" class="container">
     <div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary btn-lg" id="newKinBtn" data-toggle="modal" data-target="#myModal">
             Add a New Kin!
         </button>
 
@@ -21,30 +21,60 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <input type="text" value="image URL" ng-model="newKin.ImgURL"/>
-                            <input type="text" value="link URL" ng-model="newKin.LinkURL"/>
-                            <input type="text" value="comment" ng-model="newKin.Body" />
+                            <div class="form-group">
+                                <label for="newKinImgURL" class="control-label">Image URL:</label>
+                                <input type="text" id="newKinImgURL" ng-model="newKin.ImgURL"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="newKinLinkURL" class="control-label">Link URL:</label>
+                                <input type="text" id="newKinLinkURL" ng-model="newKin.LinkURL"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="newKinBody" class="control-label">Comment:</label>
+                                <input type="text" id="newKinBody" ng-model="newKin.Body"/>
+                            </div>
                             <input type="button" class="btn btn-primary" value="Save New Kin" ng-click="saveKin()" data-dismiss="modal"/>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                       
+
                     </div>
                 </div>
             </div>
         </div>
 
 
+        <div class="row masonry">
+            <div ng-repeat="k in Kins track by $index" class="col-md-3 kin">
+                <button type="button" class="btn" data-toggle="modal" data-target="#ViewDetailsModal" 
+                        data-KinBody="{{k.Body}}" data-KinImgURL="{{k.ImgURL}}" data-LinkURL="{{k.LinkURL}}">
+                        <img class="KinImg" ng-src="{{k.ImgURL}}" alt="{{k.Body}}" />
+                        </button>
 
-        <div ng-repeat="k in Kins track by $index" class="col-md-3 kin">
-            {{k.OwnerHandle}}
-            <a href="{{k.LinkURL}}">
-                <img ng-src="{{k.ImgURL}}" alt="{{k.Body}}"/>
-            </a>
-            {{k.Body}}
+            </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="ViewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Kin Details</h4>
+                </div>
+                <div class="modal-body">
+                    {{k.Body}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
