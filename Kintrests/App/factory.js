@@ -20,12 +20,8 @@
             return $http.post('/home/NewKin', newKin);
         }
 
-        function getDetail(detailId){
-            return $http({
-                url: '/home/kindetail',
-                method: "GET",
-                params: { kinId: detailId }
-            });;
+        function getDetail(detailId) {
+            return $http.get('/home/KinDetail', detailId);
         }
 
         function getData() {
