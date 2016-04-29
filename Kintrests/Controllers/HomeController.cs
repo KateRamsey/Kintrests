@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Kintrests.Models;
 using Microsoft.AspNet.Identity;
 
@@ -63,6 +65,18 @@ namespace Kintrests.Controllers
             if (newKin.LinkURL == null)
             {
                 newKin.LinkURL = newKin.ImgURL;
+            }
+
+
+            var regex = new Regex("https?://");
+            if (!regex.IsMatch(newKin.ImgURL))
+            {
+                newKin.ImgURL = "http://" + newKin.ImgURL;
+            }
+
+            if (!regex.IsMatch(newKin.LinkURL))
+            {
+                newKin.LinkURL = "http://" + newKin.LinkURL;
             }
 
             db.Kins.Add(newKin);
