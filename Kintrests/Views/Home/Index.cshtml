@@ -45,10 +45,10 @@
         </div>
 
 
-        <div class="row">
+        <div class="masonry row col-md-offset-1">
             <div ng-repeat="k in Kins track by $index" class="col-md-3 kin">
-                <button type="button" class="btn" data-toggle="modal" data-target="#ViewDetailsModal" ng-click="loadDetail(k.Id)">
-                        <img class="KinImg" ng-src="{{k.ImgURL}}" alt="{{k.Body}}" />
+                <button type="button" class="btn kinBtn" data-toggle="modal" data-target="#ViewDetailsModal" ng-click="loadDetail(k.Id)">
+                        <img class="KinImg img-responsive" ng-src="{{k.ImgURL}}" alt="{{k.Body}}" />
                         </button>
 
             </div>
