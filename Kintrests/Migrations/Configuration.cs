@@ -20,6 +20,10 @@ namespace Kintrests.Migrations
 
         protected override void Seed(Kintrests.Models.ApplicationDbContext context)
         {
+            if (context.Users.Any())
+            {
+                return;
+            }
             var userStore = new UserStore<KintrestUser>(context);
             var userManager = new UserManager<KintrestUser>(userStore);
 
@@ -73,12 +77,14 @@ namespace Kintrests.Migrations
             kate.Kins.Add(new Kin()
             {
                 Owner = kate,
-                ImgURL = "https://s-media-cache-ak0.pinimg.com/originals/87/b0/85/87b085cf7b1cc5f460cba801f6226d54.jpg",
-                LinkURL = "https://s-media-cache-ak0.pinimg.com/originals/87/b0/85/87b085cf7b1cc5f460cba801f6226d54.jpg"
+                ImgURL =
+                    "https://s-media-cache-ak0.pinimg.com/originals/87/b0/85/87b085cf7b1cc5f460cba801f6226d54.jpg",
+                LinkURL =
+                    "https://s-media-cache-ak0.pinimg.com/originals/87/b0/85/87b085cf7b1cc5f460cba801f6226d54.jpg"
             });
 
             context.Kins.AddRange(kate.Kins);
-          
+
 
 
             var bruce = new KintrestUser()
@@ -90,7 +96,7 @@ namespace Kintrests.Migrations
             userManager.Create(bruce, "KateIsAwes0m3!");
 
 
-            bruce.Kins.Add( new Kin()
+            bruce.Kins.Add(new Kin()
             {
                 Owner = bruce,
                 ImgURL = "https://s-media-cache-ak0.pinimg.com/564x/a0/73/ca/a073caef07ae6e42fe3d4b9c0d4d7329.jpg",
@@ -143,14 +149,12 @@ namespace Kintrests.Migrations
                 ImgURL = "https://s-media-cache-ak0.pinimg.com/564x/aa/da/23/aada23d8e0b878a4eef053d817ff30fd.jpg",
                 LinkURL = "https://www.fallout4.com"
             });
+            context.Kins.AddRange(bruce.Kins);
+
+            var seedUsers = new List<KintrestUser> {kate, bruce};
 
 
-            var seedUsers = new List<KintrestUser> { kate, bruce };
-
-
-            context.Users.AddOrUpdate(u => new { u.UserName }, seedUsers.ToArray());
-
-
+            context.Users.AddOrUpdate(u => new {u.UserName}, seedUsers.ToArray());
         }
     }
 }
