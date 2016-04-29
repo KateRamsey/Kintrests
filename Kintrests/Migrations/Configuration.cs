@@ -20,10 +20,10 @@ namespace Kintrests.Migrations
 
         protected override void Seed(Kintrests.Models.ApplicationDbContext context)
         {
+
             if (context.Users.Any())
-            {
                 return;
-            }
+
             var userStore = new UserStore<KintrestUser>(context);
             var userManager = new UserManager<KintrestUser>(userStore);
 
@@ -82,9 +82,6 @@ namespace Kintrests.Migrations
                 LinkURL =
                     "https://s-media-cache-ak0.pinimg.com/originals/87/b0/85/87b085cf7b1cc5f460cba801f6226d54.jpg"
             });
-
-            context.Kins.AddRange(kate.Kins);
-
 
 
             var bruce = new KintrestUser()
@@ -149,12 +146,8 @@ namespace Kintrests.Migrations
                 ImgURL = "https://s-media-cache-ak0.pinimg.com/564x/aa/da/23/aada23d8e0b878a4eef053d817ff30fd.jpg",
                 LinkURL = "https://www.fallout4.com"
             });
-            context.Kins.AddRange(bruce.Kins);
 
-            var seedUsers = new List<KintrestUser> {kate, bruce};
-
-
-            context.Users.AddOrUpdate(u => new {u.UserName}, seedUsers.ToArray());
+            context.SaveChanges();
         }
     }
 }
