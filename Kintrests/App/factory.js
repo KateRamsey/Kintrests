@@ -21,7 +21,11 @@
         }
 
         function getDetail(detailId) {
-            return $http.get('/home/KinDetail', detailId);
+            return $http({
+                url: '/home/kindetail',
+                method: "GET",
+                params: { kinId: detailId }
+            });;
         }
 
         function getData() {
