@@ -151,7 +151,7 @@ namespace Kintrests.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new KintrestUser { UserName = model.Email, Email = model.Email };
+                var user = new KintrestUser { UserName = model.Email, Email = model.Email, Handle = model.Handle};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
