@@ -36,10 +36,6 @@
                             <input type="button" class="btn btn-primary" value="Save New Kin" ng-click="saveKin()" data-dismiss="modal"/>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -66,8 +62,8 @@
                 </div>
                 <div class="modal-body">
                     <img class="KinImg" ng-src="{{detailLinkURL}}" alt="{{detailBody}}"/>
-                    <a href="{{detailLinkURL}}">Click</a>
-                    <p>{{detailBody}}</p>
+                    <a href="{{detailLinkURL}}">Original Source</a>
+                    <div class="detailViewKinBody">{{detailBody}}</div>
                 </div>
             </div>
         </div>
